@@ -13,12 +13,12 @@ spec:
     metadata: 
       labels: 
         app: nginx
-      spec: 
-        containers: 
-          - 
-            image: gaspacho_nginx
-            imagePullPolicy: Never
-            name: nginx
+    spec: 
+      containers: 
+        - 
+          image: gaspacho_nginx
+          imagePullPolicy: Never
+          name: nginx
 --- 
 apiVersion: v1
 kind: Service
