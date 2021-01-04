@@ -9,5 +9,6 @@ RUN apk upgrade
 RUN apk add nginx 
 
 EXPOSE 80
+COPY srcs/setup.sh /
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["sh", "setup.sh"]
