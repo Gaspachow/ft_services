@@ -7,8 +7,8 @@ RUN apk upgrade
 
 # setup nginx
 RUN apk add nginx 
-RUN rm -v /etc/nginx/nginx.conf
-ADD srcs/nginx.conf /etc/nginx/ 
+COPY srcs/nginx.conf /etc/nginx/
+COPY srcs/index.html var/www/
 
 EXPOSE 80
 COPY srcs/setup.sh /
