@@ -24,12 +24,12 @@ minikube addons enable metrics-server
 minikube addons enable metallb
 
 # Apply config for MetalLB
-kubectl apply -f srcs/yaml/metallb.yaml
+kubectl apply -f srcs/yaml/metalLB.yaml
 
 # Point shell to minikube's docker-daemon
 eval $(minikube docker-env)
 
-# Build the gaspacho_nginx image
+# Build the gaspacho_nginx imagec
 docker build -t gaspacho_nginx srcs/nginx
 
 # Apply the nginx config
