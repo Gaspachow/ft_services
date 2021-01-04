@@ -6,11 +6,26 @@ RUN apk update
 RUN apk upgrade
 
 # setup nginx
+RUN mkdir -p /run/nginx
 RUN apk add nginx 
-COPY srcs/nginx.conf /etc/nginx/
-COPY srcs/index.html var/www/
+COPY srcs/nginx.conf        /etc/nginx/
+COPY srcs/index.html        /var/www/
+COPY srcs/ssl_nginx.conf    /etc/nginx/
 
-EXPOSE 80
+# setup ssl
+RUN apk add openssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -subj "/C=FR/ST=France/L=Paris/O=42Paris/CN=127.0.0.1" \
+    -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt
+
+# setup ssh
+RUN apk add openssh
+RUN adduser -D gaspacho
+RUN echo "gaspacho:pwd" | chpasswd
+RUN ssh-keygen -A
+RUN openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 2048
+
+
+EXPOSE 22 80 443
 COPY srcs/setup.sh /
-
 ENTRYPOINT ["sh", "setup.sh"]
