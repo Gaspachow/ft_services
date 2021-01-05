@@ -10,7 +10,6 @@ RUN mkdir -p /run/nginx
 RUN apk add nginx 
 COPY srcs/nginx.conf        /etc/nginx/
 COPY srcs/index.html        /var/www/
-COPY srcs/ssl_nginx.conf    /etc/nginx/
 
 # setup ssl
 RUN apk add openssl

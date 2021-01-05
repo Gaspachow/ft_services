@@ -42,7 +42,7 @@ spec:
       name: ssh
       port: 22
       protocol: TCP
-      targetPort: 443
+      targetPort: 22
   selector: 
     app: nginx
   type: LoadBalancer
