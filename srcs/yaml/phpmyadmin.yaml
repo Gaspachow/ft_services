@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: phpmyadmin
+  name: phpmyadmin
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: phpmyadmin
+  template: 
+    metadata: 
+      labels: 
+        app: phpmyadmin
+    spec: 
+      containers: 
+        - 
+          image: gaspacho_pma
+          imagePullPolicy: Never
+          name: phpmyadmin
+          ports: 
+            - 
+              containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  annotations: 
+    metallb.universe.tf/allow-shared-ip: key
+  name: phpmyadmin
+spec: 
+  ports: 
+    - 
+      name: phpmyadmin
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector: 
+    app: phpmyadmin
+  type: LoadBalancer
