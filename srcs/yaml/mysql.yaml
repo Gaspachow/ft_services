@@ -3,49 +3,49 @@ kind: Deployment
 metadata: 
   labels: 
     app: mysql
-  name: mysql
+  name: mysql-dep
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
       app: mysql
-    template: 
-      metadata: 
-        labels: 
-          app: mysql
-        name: mysql
-      spec: 
-        containers: 
-          - 
-            image: gaspacho_mysql
-            imagePullPolicy: Never
-            name: mysql
-            ports: 
-              - 
-                containerPort: 3306
-                name: mysql
-            volumeMounts: 
-              - 
-                mountPath: var/lib/mysql
-                name: mysql-volume
-        volumes: 
-          - 
-            name: mysql-volume
-            persistentVolumeClaim: 
-              claimName: mysql-volume-claim
+  template: 
+    metadata: 
+      labels: 
+        app: mysql
+    spec: 
+      containers: 
+        - 
+          image: gaspacho_mysql
+          imagePullPolicy: Never
+          name: mysql
+          ports: 
+            - 
+              containerPort: 3306
+              name: mysql
+          volumeMounts: 
+            - 
+              mountPath: var/lib/mysql
+              name: mysql-volume
+      volumes: 
+        - 
+          name: mysql-volume
+          persistentVolumeClaim: 
+            claimName: mysql-volume
 --- 
 apiVersion: v1
-kind: persistentVolumeClaim
+kind: PersistentVolumeClaim
 metadata: 
   labels: 
     app: mysql
-  name: mysql-volume-claim
+  name: mysql-volume
 spec: 
   accessModes: 
-    - ReadWriteOnce
+    - 
+      ReadWriteOnce
   resources: 
     requests: 
-      storage: 2Gi
+      storage: 1Gi
 --- 
 apiVersion: v1
 kind: Service

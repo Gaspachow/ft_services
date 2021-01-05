@@ -1,7 +1,7 @@
-mysql start
-echo "CREATE DATABASE wordpress;" | mysql -u root
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
-echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
-mysql wordpress -u root --password=  < /tmp/dump.sql
-mysql restart
+#! /bin/sh
+mariadb-install-db -u root
+mysqld -u root & sleep 3
+mysql -u root --execute="CREATE DATABASE wordpress;"
+# mysql -u root wordpress < /tmp/dump.sql
+mysql -u root --execute="CREATE USER 'root'@'%' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; USE wordpress; FLUSH PRIVILEGES;"
+sleep infinite

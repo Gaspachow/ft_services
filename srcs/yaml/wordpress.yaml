@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: gaspacho_nginx
+          image: gaspacho_wordpress
           imagePullPolicy: Never
           name: wordpress
           ports: 
