@@ -29,11 +29,15 @@ kubectl apply -f srcs/yaml/metalLB.yaml
 # Point shell to minikube's docker-daemon
 eval $(minikube docker-env)
 
-# Build the gaspacho_nginx imagec
+# Build the docker images
 docker build -t gaspacho_nginx srcs/nginx
+docker build -t gaspacho_mysql srcs/mysql
+docker build -t gaspacho_wordpress srcs/wordpress
 
 # Apply the nginx config
 kubectl apply -f srcs/yaml/nginx.yaml
+kubectl apply -f srcs/yaml/mysql.yaml
+kubectl apply -f srcs/yaml/wordpress.yaml
 
 
 
