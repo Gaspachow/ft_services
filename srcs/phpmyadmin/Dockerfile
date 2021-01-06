@@ -17,6 +17,10 @@ RUN mkdir -p /run/nginx
 RUN apk add nginx
 COPY srcs/nginx.conf        /etc/nginx/
 
+# Add telegraf for monitoring
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+COPY	/srcs/telegraf.conf			/etc/telegraf/
+
 COPY /srcs/setup.sh /
 
 EXPOSE 5000

@@ -12,6 +12,10 @@ RUN echo "root:root" | chpasswd
 COPY srcs/vsftpd.conf etc/vsftpd/vsftpd.conf
 COPY srcs/setup.sh /
 
+# Add telegraf for monitoring
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+COPY	/srcs/telegraf.conf			/etc/telegraf/telegraf.conf
+
 EXPOSE 21 20 20021
 
 ENTRYPOINT ["sh", "setup.sh"]

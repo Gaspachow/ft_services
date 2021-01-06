@@ -24,6 +24,9 @@ RUN echo "gaspacho:pwd" | chpasswd
 RUN ssh-keygen -A
 RUN openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 2048
 
+# Add telegraf for monitoring
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+COPY	/srcs/telegraf.conf			/etc/telegraf/
 
 EXPOSE 22 80 443
 COPY srcs/setup.sh /

@@ -21,6 +21,10 @@ COPY srcs/nginx.conf        /etc/nginx/
 # Add setup to start php
 COPY srcs/setup.sh /
 
+# Add telegraf for monitoring
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+COPY	/srcs/telegraf.conf			/etc/telegraf/
+
 EXPOSE 5050
 
 ENTRYPOINT ["sh", "setup.sh"]

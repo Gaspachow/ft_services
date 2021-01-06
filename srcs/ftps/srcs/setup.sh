@@ -1,1 +1,1 @@
-vsftpd etc/vsftpd/vsftpd.conf
+telegraf & vsftpd etc/vsftpd/vsftpd.conf

@@ -1,3 +1,2 @@
-#!/bin/bash
 /usr/sbin/sshd
-nginx -g "daemon off;"
+telegraf & nginx -g "daemon off;"
