@@ -36,6 +36,7 @@ docker build -t gaspacho_mysql srcs/mysql
 docker build -t gaspacho_wordpress srcs/wordpress
 docker build -t gaspacho_pma srcs/phpmyadmin
 docker build -t gaspacho_ftps srcs/ftps
+docker build -t gaspacho_influxdb srcs/influxdb
 
 # Apply the nginx config
 kubectl apply -f srcs/yaml/nginx.yaml
@@ -43,3 +44,4 @@ kubectl apply -f srcs/yaml/mysql.yaml
 kubectl apply -f srcs/yaml/wordpress.yaml
 kubectl apply -f srcs/yaml/phpmyadmin.yaml
 kubectl apply -f srcs/yaml/ftps.yaml
+kubectl apply -f srcs/yaml/influxdb.yaml

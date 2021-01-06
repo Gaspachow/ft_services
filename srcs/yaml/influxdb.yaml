@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: influxdb
+  name: influxdb-dep
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: influxdb
+  template: 
+    metadata: 
+      labels: 
+        app: influxdb
+    spec: 
+      containers: 
+        - 
+          image: gaspacho_influxdb
+          imagePullPolicy: Never
+          name: influxdb
+          ports: 
+            - 
+              containerPort: 8086
+              name: influxdb-data
+          volumeMounts: 
+            - 
+              mountPath: var/lib/influxdb
+              name: influxdb-volume
+      volumes: 
+        - 
+          name: influxdb-volume
+          persistentVolumeClaim: 
+            claimName: influxdb-volume
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  labels: 
+    app: influxdb
+  name: influxdb-volume
+spec: 
+  accessModes: 
+    - 
+      ReadWriteOnce
+  resources: 
+    requests: 
+      storage: 1Gi
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app: influxdb
+  name: influxdb
+spec: 
+  ports: 
+    - 
+      port: 8086
+      protocol: TCP
+      targetPort: 8086
+      name: influxdb-data
+  selector: 
+    app: influxdb
+
+
