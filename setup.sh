@@ -19,7 +19,7 @@ minikube delete
 minikube start --driver=docker
 
 # Set IP address
-REAL_IP="$(kubectl get node -o=custom-columns='DATA:status.addresses[0].address' | sed -n 2p)"
+REAL_IP="$(kubectl get nodes -owide | awk 'NR==2{print $6}')"
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/yaml/metalLB.yaml
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/nginx/srcs/index.html
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/nginx/srcs/nginx.conf
