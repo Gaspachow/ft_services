@@ -20,7 +20,7 @@ minikube start --driver=docker
 
 # Set IP address
 REAL_IP="$(kubectl get node -o=custom-columns='DATA:status.addresses[0].address' | sed -n 2p)"
-sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/yaml/metallb.yaml
+sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/yaml/metalLB.yaml
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/nginx/srcs/index.html
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/nginx/srcs/nginx.conf
 sed -i 's/MINIKUBE-IP/'$REAL_IP'/g' srcs/mysql/srcs/dump.sql
