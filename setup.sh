@@ -55,3 +55,7 @@ kubectl apply -f srcs/yaml/phpmyadmin.yaml
 kubectl apply -f srcs/yaml/ftps.yaml
 kubectl apply -f srcs/yaml/influxdb.yaml
 kubectl apply -f srcs/yaml/grafana.yaml
+
+# Launch dashboard
+sleep 5
+minikube dashboard
