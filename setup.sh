@@ -19,8 +19,8 @@ minikube delete
 minikube start --driver=docker
 
 #Enable addons
-minikube addons enable dashboard
 minikube addons enable metrics-server
+minikube addons enable dashboard
 minikube addons enable metallb
 
 # Apply config for MetalLB

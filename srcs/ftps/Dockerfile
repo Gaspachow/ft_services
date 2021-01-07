@@ -16,6 +16,6 @@ COPY srcs/setup.sh /
 RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 COPY	/srcs/telegraf.conf			/etc/telegraf/telegraf.conf
 
-EXPOSE 21 20 20021
+EXPOSE 21 20021
 
 ENTRYPOINT ["sh", "setup.sh"]
