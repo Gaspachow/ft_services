@@ -1,6 +1,6 @@
 # ft_services - School 42 project
 
-Ft_services is an introduction to cluster management and deployment with Kubernetes.
+ft_services is an introduction to cluster management and deployment with Kubernetes.
 
 The project consists of setting up a multi-service cluster using Kubernetes.
 
