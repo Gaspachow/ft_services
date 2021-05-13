@@ -1,4 +1,4 @@
-# ft_services - School 42 project
+# ft_services - Legacy School 42 project
 
 ft_services is an introduction to cluster management and deployment with Kubernetes.
 
